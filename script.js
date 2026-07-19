@@ -1,71 +1,58 @@
-// ============================================================
-// 1. DATA
-// ============================================================
 
-// Explore Trips
-// ============================================================
-// DATA EXPLORE – 8 Destinasi Wisata
-// ============================================================
 const exploreData = [
     {
         id: 1,
-        name: 'Bali',
-        location: 'Pulau Dewata',
+        name: 'Air Terjun Niagara',
+        location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&h=400&fit=crop',
         rating: 4.9,
-        price: 'Rp 2.500.000',
-        tag: '⭐ Terpopuler',
-        desc: 'Pantai, budaya, dan sunset terbaik.',
+        tag: ' Terpopuler',
+        desc: 'Air Terjun.',
     },
     {
         id: 2,
-        name: 'Raja Ampat',
-        location: 'Papua Barat',
+        name: 'Pantai Bidadari',
+        location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1586500036742-35a6ab07c12e?w=600&h=400&fit=crop',
         rating: 4.8,
-        price: 'Rp 3.200.000',
-        tag: '🏝️ Eksotis',
-        desc: 'Surga bawah laut yang memukau.',
+        tag: ' Eksotis',
+        desc: 'Pantai, Sunset, Paddleboard, Yoga',
     },
     {
         id: 3,
-        name: 'Yogyakarta',
-        location: 'Jawa Tengah',
+        name: 'Alun-Alun Danau Ranau',
+        location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1547844149-7c2c5c0f3b6d?w=600&h=400&fit=crop',
         rating: 4.7,
-        price: 'Rp 1.800.000',
-        tag: '🏛️ Heritage',
-        desc: 'Candi, budaya, dan kuliner khas.',
+        tag: ' Heritage',
+        desc: 'Pusat Keramaian',
     },
     {
         id: 4,
-        name: 'Bromo',
-        location: 'Jawa Timur',
+        name: 'Pantai Pati Marga',
+        location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1506765515384-028b60b970df?w=600&h=400&fit=crop',
         rating: 4.9,
-        price: 'Rp 2.100.000',
-        tag: '🌋 Petualang',
-        desc: 'Gunung berapi dengan panorama sunrise.',
+        tag: 'Pantai',
+        desc: 'Pantai, Sunset',
     },
     {
         id: 5,
-        name: 'Komodo',
-        location: 'Nusa Tenggara',
+        name: 'Rafting',
+        location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1547469965-6b1116bfd7c0?w=600&h=400&fit=crop',
         rating: 4.6,
-        price: 'Rp 2.900.000',
-        tag: '🦎 Unik',
-        desc: 'Habitat komodo dan pulau pink.',
+        tag: 'Sport',
+        desc: 'Olahraga air, Petualangan, Adrenalin',
     },
     {
         id: 6,
-        name: 'Danau Toba',
-        location: 'Sumatera Utara',
+        name: 'Air Terjun Subik Tuha',
+        location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop',
         rating: 4.5,
-        price: 'Rp 1.500.000',
-        tag: '🏞️ Tenang',
-        desc: 'Danau vulkanik terbesar di dunia.',
+        tag: 'Waterfall',
+        desc: 'Air Terjun, Alam, Petualangan',
     },
 ];
 
@@ -87,7 +74,6 @@ function renderExplore() {
                         <div class="explore-rating">
                             <span>⭐ ${item.rating}</span>
                         </div>
-                        <div class="explore-price">${item.price}</div>
                         <p class="explore-desc">${item.desc}</p>
                         <a href="#deals" class="explore-btn">Pesan Sekarang</a>
                     </div>

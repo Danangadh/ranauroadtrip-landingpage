@@ -406,19 +406,7 @@ a {
 }
 
 /* Harga dengan background transparan */
-.explore-price {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #ffffff;
-    background: rgba(22, 158, 249, 0.6);
-    backdrop-filter: blur(4px);
-    display: inline-block;
-    padding: 4px 18px;
-    border-radius: 30px;
-    margin: 6px 0 10px 0;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
+
 
 /* Deskripsi singkat (muncul saat hover) */
 .explore-desc {
@@ -439,7 +427,7 @@ a {
 /* Tombol aksi (muncul saat hover) */
 .explore-btn {
     display: inline-block;
-    background: linear-gradient(135deg, #f97316, #dc2626);
+    background: linear-gradient(135deg, #02a10f, #73ff01);
     color: #fff;
     font-weight: 700;
     padding: 10px 28px;
