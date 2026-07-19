@@ -262,16 +262,92 @@ function initScrollReveal() {
 // ============================================================
 // 7. INIT
 // ============================================================
+// ============================================================
+// 8. NAVIGASI DARURAT (Fallback jika link tidak berfungsi)
+// ============================================================
 
-document.addEventListener('DOMContentLoaded', () => {
-    renderExplore();
-    renderDeals();
-    initMobileMenu();
-    initNavbarScroll();
-    initScrollReveal();
-    // Mulai carousel di slide pertama
-    goToSlide(0);
-    startAutoplay();
+function initNavigationFix() {
+    // Ambil semua link di navbar
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        // Hapus semua event listener lama (jika ada)
+        const newLink = link.cloneNode(true);
+        link.parentNode.replaceChild(newLink, link);
+        
+        // Tambahkan event listener baru
+        newLink.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    // Tutup mobile menu jika terbuka
+                    const navLinksContainer = document.querySelector('.nav-links');
+                    if (navLinksContainer) {
+                        navLinksContainer.classList.remove('active');
+                        const toggle = document.getElementById('menuToggle');
+                        if (toggle) toggle.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    // Scroll ke target
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        });
+    });
+}
+
+// ============================================================
+// 9. PERBAIKAN MOBILE MENU (Pastikan tombol hamburger berfungsi)
+// ============================================================
+
+function initMobileMenuFixed() {
+    const toggle = document.getElementById('menuToggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (!toggle || !navLinks) return;
+
+    // Hapus event listener lama dengan clone
+    const newToggle = toggle.cloneNode(true);
+    toggle.parentNode.replaceChild(newToggle, toggle);
+
+    newToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+        // Ubah ikon
+        const icon = this.querySelector('i');
+        if (icon) {
+            if (navLinks.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        }
+    });
+
+    // Tutup menu saat klik di luar
+    document.addEventListener('click', function(e) {
+        const nav = document.querySelector('.navbar');
+        if (nav && !nav.contains(e.target)) {
+            navLinks.classList.remove('active');
+            const icon = newToggle.querySelector('i');
+            if (icon) icon.className = 'fas fa-bars';
+        }
+    });
+}
+
+// ============================================================
+// PANGGIL FUNGSI BARU DI DOMContentLoaded
+// ============================================================
+
+// Tambahkan ini di dalam DOMContentLoaded yang sudah ada
+document.addEventListener('DOMContentLoaded', function() {
+    // ... kode yang sudah ada ...
+    
+    // Panggil fungsi perbaikan navigasi
+    initNavigationFix();
+    initMobileMenuFixed();
 });
+
 
 console.log('🚀 TravelExplore dengan slider hero siap!');
