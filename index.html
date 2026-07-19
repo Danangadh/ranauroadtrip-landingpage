@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RanauRoadTrip</title>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">RanauRoadTrip</a>
+            <ul class="nav-links">
+                <li><a href="#explore">Jelajahi</a></li>
+                <li><a href="#deals">Promo</a></li>
+                <li><a href="#contact">Kontak</a></li>
+               
+            </ul>
+            <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- ===== HERO CAROUSEL ===== -->
+    <section class="hero-carousel" id="home">
+        <!-- Slide container -->
+        <div class="carousel-slides" id="carouselSlides">
+            <!-- slide 1 -->
+            <div class="carousel-slide active" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200');">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h1>Explore Ranau <br /><span>Harmony of Indonesia</span></h1>
+                        <p>Jelajahi destinasi impianmu dengan pengalaman tak terlupakan.</p>
+                        <a href="#explore" class="btn-primary">Mulai Petualangan →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- slide 2 -->
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200');">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h1>Nikmati keindahan <br /><span>alam dan budaya</span></h1>
+                        <p>Dapatkan pengalaman berharga di setiap sudut dunia.</p>
+                        <a href="#explore" class="btn-primary">Jelajahi Sekarang →</a>
+                    </div>
+                </div>
+            </div>
+            <!-- slide 3 -->
+            <div class="carousel-slide" style="background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1200');">
+                <div class="slide-overlay">
+                    <div class="slide-content">
+                        <h1>Liburan impian <br /><span>bersama orang tercinta</span></h1>
+                        <p>Paket wisata keluarga dengan harga terbaik.</p>
+                        <a href="#deals" class="btn-primary">Lihat Promo →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tombol navigasi kiri/kanan -->
+        <button class="carousel-btn prev" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+        <button class="carousel-btn next" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+
+        <!-- Indikator dot -->
+        <div class="carousel-dots" id="carouselDots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+        </div>
+    </section>
+
+    <!-- ===== EXPLORE TRIPS ===== -->
+    <section class="explore" id="explore">
+    <div class="section-header">
+        <span class="badge">✦ Petualangan</span>
+        <h2>Explore Trips</h2>
+        <p>Temukan gaya perjalanan yang cocok untukmu.</p>
+    </div>
+    <div class="explore-grid" id="exploreGrid">
+        <!-- Akan diisi JavaScript -->
+    </div>
+</section>
+
+    <!-- ===== TRENDING DEALS ===== -->
+    <section class="deals" id="deals">
+        <div class="container">
+            <div class="section-header">
+                <span class="badge">🔥 Terbatas</span>
+                <h2>Trending deals</h2>
+                <p>Handpicked offers you’ll love. Limited time deals, unforgettable experiences.</p>
+            </div>
+            <div class="deals-grid" id="dealsGrid">
+                <!-- Akan diisi JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CTA / CONTACT ===== -->
+    <section class="cta" id="contact">
+        <div class="container cta-content">
+            <h2>Siap Mulai Perjalanan?</h2>
+            <p>Booking kursi kalian sekarang dan nikmati petualangan yang tak terlupakan!</p>
+            <a href="#" class="btn-primary">Hubungi Kami</a>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 RanauRoadTrip. Semua hak dilindungi.</p>
+            <p class="footer-made">Dibuat dengan Hati untuk para penjelajah.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
