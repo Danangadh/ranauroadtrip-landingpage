@@ -702,102 +702,17 @@ a {
     }
 }
 
-/* ===== PERBAIKAN NAVIGASI ===== */
-
-/* Pastikan navbar dan semua turunannya bisa diklik */
-.navbar,
-.navbar *,
-.nav-container,
-.nav-links,
-.nav-links li,
+/* Pastikan navbar selalu di atas */
+.navbar {
+    z-index: 9999 !important;
+    position: fixed !important;
+}
 .nav-links a {
     pointer-events: auto !important;
-    z-index: 99999 !important;
-    position: relative !important;
-}
-
-.nav-links a {
     cursor: pointer !important;
-    display: inline-block !important;
-    user-select: none !important;
 }
-
-/* Hapus semua kemungkinan overlay yang menghalangi */
-.hero-carousel,
-.carousel-slides,
-.carousel-slide,
-.slide-overlay {
+.hero-carousel {
     z-index: 1 !important;
-    pointer-events: none !important; /* biarkan carousel tidak menghalangi klik */
-}
-
-/* Kecuali tombol carousel tetap bisa diklik */
-.carousel-btn,
-.carousel-dots,
-.carousel-dots .dot {
-    pointer-events: auto !important;
-    z-index: 10 !important;
-}
-
-/* Pastikan slide content tidak menghalangi */
-.slide-content {
-    pointer-events: none !important;
-}
-.slide-content .btn-primary {
-    pointer-events: auto !important;
-}
-
-/* Perbaiki mobile menu */
-@media (max-width: 768px) {
-    .nav-links {
-        position: fixed !important;
-        top: 72px !important;
-        left: 0 !important;
-        width: 100% !important;
-        background: rgba(255, 255, 255, 0.98) !important;
-        backdrop-filter: blur(12px) !important;
-        flex-direction: column !important;
-        padding: 24px !important;
-        gap: 12px !important;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1) !important;
-        transform: translateY(-200%) !important;
-        transition: transform 0.35s ease !important;
-        border-radius: 0 0 20px 20px !important;
-        z-index: 99999 !important;
-        pointer-events: none !important; /* default tidak bisa diklik */
-    }
-
-    .nav-links.active {
-        transform: translateY(0) !important;
-        pointer-events: auto !important; /* saat aktif bisa diklik */
-    }
-
-    .nav-links a {
-        width: 100% !important;
-        text-align: center !important;
-        padding: 14px 20px !important;
-        font-size: 1.1rem !important;
-        border-radius: 12px !important;
-        pointer-events: auto !important;
-        background: transparent !important;
-    }
-
-    .nav-links a:hover {
-        background: #f1f5f9 !important;
-    }
-
-    .nav-links .btn-nav {
-        background: linear-gradient(135deg, #1a16f9, #dc2626) !important;
-        color: #fff !important;
-    }
-
-    .menu-toggle {
-        display: block !important;
-        z-index: 999999 !important;
-        position: relative !important;
-        pointer-events: auto !important;
-        cursor: pointer !important;
-    }
 }
 
 @media (max-width: 480px) {

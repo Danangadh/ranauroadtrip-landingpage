@@ -1,4 +1,6 @@
-
+// ============================================================
+// DATA EXPLORE – Destinasi Wisata Ranau
+// ============================================================
 const exploreData = [
     {
         id: 1,
@@ -6,8 +8,8 @@ const exploreData = [
         location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&h=400&fit=crop',
         rating: 4.9,
-        tag: ' Terpopuler',
-        desc: 'Air Terjun.',
+        tag: '⭐ Terpopuler',
+        desc: 'Air Terjun indah dengan pemandangan hijau.',
     },
     {
         id: 2,
@@ -15,7 +17,7 @@ const exploreData = [
         location: 'Ranau',
         image: 'pantai-bidadari.jpeg',
         rating: 4.8,
-        tag: ' Eksotis',
+        tag: '🏝️ Eksotis',
         desc: 'Pantai, Sunset, Paddleboard, Yoga',
     },
     {
@@ -24,8 +26,8 @@ const exploreData = [
         location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1547844149-7c2c5c0f3b6d?w=600&h=400&fit=crop',
         rating: 4.7,
-        tag: ' Heritage',
-        desc: 'Pusat Keramaian',
+        tag: '🏛️ Heritage',
+        desc: 'Pusat keramaian dan kuliner khas.',
     },
     {
         id: 4,
@@ -33,8 +35,8 @@ const exploreData = [
         location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1506765515384-028b60b970df?w=600&h=400&fit=crop',
         rating: 4.9,
-        tag: 'Pantai',
-        desc: 'Pantai, Sunset',
+        tag: '🏖️ Pantai',
+        desc: 'Pantai eksklusif dengan sunset memukau.',
     },
     {
         id: 5,
@@ -42,8 +44,8 @@ const exploreData = [
         location: 'Ranau',
         image: 'rafting.jpeg',
         rating: 4.6,
-        tag: 'Sport',
-        desc: 'Olahraga air, Petualangan, Adrenalin',
+        tag: '🚣 Sport',
+        desc: 'Olahraga air, petualangan, adrenalin.',
     },
     {
         id: 6,
@@ -51,32 +53,31 @@ const exploreData = [
         location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop',
         rating: 4.5,
-        tag: 'Waterfall',
-        desc: 'Air Terjun, Alam, Petualangan',
+        tag: '💦 Waterfall',
+        desc: 'Air terjun alami di tengah hutan.',
     },
-
-     {
-        id: 6,
+    {
+        id: 7,
         name: 'Paddleboard',
         location: 'Ranau',
         image: 'paddleboard.jpeg',
         rating: 4.5,
-        tag: 'Paddleboard',
-        desc: 'Wahana Air, Alam, Petualangan',
+        tag: '🏄 Paddleboard',
+        desc: 'Bermain paddleboard di danau yang tenang.',
     },
-     {
-        id: 6,
+    {
+        id: 8,
         name: 'Jetski',
         location: 'Ranau',
         image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop',
         rating: 4.5,
-        tag: 'Waterfall',
-        desc: 'Air Terjun, Alam, Petualangan',
+        tag: '🛥️ Jetski',
+        desc: 'Sensasi kecepatan di atas air.',
     },
 ];
 
 // ============================================================
-// RENDER EXPLORE (8 Destinasi dengan Card Modern)
+// RENDER EXPLORE
 // ============================================================
 function renderExplore() {
     const grid = document.getElementById('exploreGrid');
@@ -87,13 +88,13 @@ function renderExplore() {
             (item) => `
                 <div class="explore-card" style="background-image: url('${item.image}');">
                     <div class="explore-card-overlay">
-                        <span class="explore-tag">${item.tag}</span>
-                        <h3 class="explore-name">${item.name}</h3>
-                        <p class="explore-location"><i class="fas fa-map-marker-alt"></i> ${item.location}</p>
+                        <span class="explore-tag">${item.tag || ''}</span>
+                        <h3 class="explore-name">${item.name || ''}</h3>
+                        <p class="explore-location"><i class="fas fa-map-marker-alt"></i> ${item.location || ''}</p>
                         <div class="explore-rating">
-                            <span>⭐ ${item.rating}</span>
+                            <span>⭐ ${item.rating || 0}</span>
                         </div>
-                        <p class="explore-desc">${item.desc}</p>
+                        <p class="explore-desc">${item.desc || ''}</p>
                         <a href="#deals" class="explore-btn">Pesan Sekarang</a>
                     </div>
                 </div>
@@ -101,6 +102,16 @@ function renderExplore() {
         )
         .join('');
 }
+
+// ============================================================
+// RENDER DEALS (sementara sebagai contoh)
+// ============================================================
+const dealsData = [
+    { emoji: '🌴', destination: 'Bali', country: 'Indonesia', price: 799, badge: '🔥 Populer' },
+    { emoji: '🌅', destination: 'Santorini', country: 'Yunani', price: 999, badge: '⭐ Favorit' },
+    { emoji: '🏙️', destination: 'Dubai', country: 'UAE', price: 849, badge: '✨ Mewah' },
+    { emoji: '🗼', destination: 'Paris', country: 'Prancis', price: 699, badge: '❤️ Romantis' },
+];
 
 function renderDeals() {
     const grid = document.getElementById('dealsGrid');
@@ -117,9 +128,8 @@ function renderDeals() {
 }
 
 // ============================================================
-// 3. CAROUSEL
+// CAROUSEL
 // ============================================================
-
 const slides = document.querySelectorAll('.carousel-slide');
 const dots = document.querySelectorAll('.dot');
 const prevBtn = document.getElementById('prevBtn');
@@ -132,11 +142,11 @@ function goToSlide(index) {
     if (index >= slides.length) index = 0;
     currentIndex = index;
 
-    // Geser container slides
     const slidesContainer = document.getElementById('carouselSlides');
-    slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    if (slidesContainer) {
+        slidesContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
 
-    // Update dots
     dots.forEach((dot, i) => {
         dot.classList.toggle('active', i === currentIndex);
     });
@@ -162,7 +172,6 @@ function stopAutoplay() {
     }
 }
 
-// Event listeners
 if (prevBtn && nextBtn) {
     prevBtn.addEventListener('click', () => {
         stopAutoplay();
@@ -189,39 +198,88 @@ dots.forEach((dot) => {
 });
 
 // ============================================================
-// 4. MOBILE MENU
+// MOBILE MENU (Versi Lama – akan kita timpa dengan yang baru)
+// ============================================================
+function initMobileMenu() {
+    // Fungsi ini akan digantikan oleh initMobileMenuFixed
+    // Biarkan kosong agar tidak bentrok
+}
+
+// ============================================================
+// PERBAIKAN NAVIGASI (FIX)
 // ============================================================
 
-function initMobileMenu() {
-    const toggle = document.getElementById('menuToggle');
-    const navLinks = document.querySelector('.nav-links');
-    if (!toggle || !navLinks) return;
-
-    toggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const icon = toggle.querySelector('i');
-        if (icon) {
-            icon.classList.toggle('fa-bars');
-            icon.classList.toggle('fa-times');
-        }
-    });
-
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            const icon = toggle.querySelector('i');
-            if (icon) {
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
+function initNavigationFix() {
+    const navLinks = document.querySelectorAll('.nav-links a');
+    
+    navLinks.forEach(link => {
+        // Clone untuk menghapus event listener lama
+        const newLink = link.cloneNode(true);
+        link.parentNode.replaceChild(newLink, link);
+        
+        newLink.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href && href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    // Tutup mobile menu jika terbuka
+                    const navLinksContainer = document.querySelector('.nav-links');
+                    if (navLinksContainer) {
+                        navLinksContainer.classList.remove('active');
+                        const toggle = document.getElementById('menuToggle');
+                        if (toggle) {
+                            const icon = toggle.querySelector('i');
+                            if (icon) {
+                                icon.className = 'fas fa-bars';
+                            }
+                        }
+                    }
+                    // Scroll ke target dengan smooth
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         });
     });
 }
 
-// ============================================================
-// 5. NAVBAR SCROLL EFFECT
-// ============================================================
+function initMobileMenuFixed() {
+    const toggle = document.getElementById('menuToggle');
+    const navLinks = document.querySelector('.nav-links');
 
+    if (!toggle || !navLinks) return;
+
+    // Clone toggle untuk menghapus event listener lama
+    const newToggle = toggle.cloneNode(true);
+    toggle.parentNode.replaceChild(newToggle, toggle);
+
+    newToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        navLinks.classList.toggle('active');
+        const icon = this.querySelector('i');
+        if (icon) {
+            if (navLinks.classList.contains('active')) {
+                icon.className = 'fas fa-times';
+            } else {
+                icon.className = 'fas fa-bars';
+            }
+        }
+    });
+
+    // Tutup menu saat klik di luar navbar
+    document.addEventListener('click', function(e) {
+        const nav = document.querySelector('.navbar');
+        if (nav && !nav.contains(e.target)) {
+            navLinks.classList.remove('active');
+            const icon = newToggle.querySelector('i');
+            if (icon) icon.className = 'fas fa-bars';
+        }
+    });
+}
+
+// ============================================================
+// NAVBAR SCROLL EFFECT
+// ============================================================
 function initNavbarScroll() {
     const navbar = document.querySelector('.navbar');
     if (!navbar) return;
@@ -237,9 +295,8 @@ function initNavbarScroll() {
 }
 
 // ============================================================
-// 6. SCROLL REVEAL
+// SCROLL REVEAL
 // ============================================================
-
 function initScrollReveal() {
     const cards = document.querySelectorAll('.explore-card, .deal-card');
     const observer = new IntersectionObserver((entries) => {
@@ -260,94 +317,22 @@ function initScrollReveal() {
 }
 
 // ============================================================
-// 7. INIT
+// INIT
 // ============================================================
-// ============================================================
-// 8. NAVIGASI DARURAT (Fallback jika link tidak berfungsi)
-// ============================================================
-
-function initNavigationFix() {
-    // Ambil semua link di navbar
-    const navLinks = document.querySelectorAll('.nav-links a');
+document.addEventListener('DOMContentLoaded', () => {
+    renderExplore();
+    renderDeals();
     
-    navLinks.forEach(link => {
-        // Hapus semua event listener lama (jika ada)
-        const newLink = link.cloneNode(true);
-        link.parentNode.replaceChild(newLink, link);
-        
-        // Tambahkan event listener baru
-        newLink.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href && href.startsWith('#')) {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    // Tutup mobile menu jika terbuka
-                    const navLinksContainer = document.querySelector('.nav-links');
-                    if (navLinksContainer) {
-                        navLinksContainer.classList.remove('active');
-                        const toggle = document.getElementById('menuToggle');
-                        if (toggle) toggle.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                    // Scroll ke target
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }
-        });
-    });
-}
-
-// ============================================================
-// 9. PERBAIKAN MOBILE MENU (Pastikan tombol hamburger berfungsi)
-// ============================================================
-
-function initMobileMenuFixed() {
-    const toggle = document.getElementById('menuToggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (!toggle || !navLinks) return;
-
-    // Hapus event listener lama dengan clone
-    const newToggle = toggle.cloneNode(true);
-    toggle.parentNode.replaceChild(newToggle, toggle);
-
-    newToggle.addEventListener('click', function(e) {
-        e.stopPropagation();
-        navLinks.classList.toggle('active');
-        // Ubah ikon
-        const icon = this.querySelector('i');
-        if (icon) {
-            if (navLinks.classList.contains('active')) {
-                icon.className = 'fas fa-times';
-            } else {
-                icon.className = 'fas fa-bars';
-            }
-        }
-    });
-
-    // Tutup menu saat klik di luar
-    document.addEventListener('click', function(e) {
-        const nav = document.querySelector('.navbar');
-        if (nav && !nav.contains(e.target)) {
-            navLinks.classList.remove('active');
-            const icon = newToggle.querySelector('i');
-            if (icon) icon.className = 'fas fa-bars';
-        }
-    });
-}
-
-// ============================================================
-// PANGGIL FUNGSI BARU DI DOMContentLoaded
-// ============================================================
-
-// Tambahkan ini di dalam DOMContentLoaded yang sudah ada
-document.addEventListener('DOMContentLoaded', function() {
-    // ... kode yang sudah ada ...
-    
-    // Panggil fungsi perbaikan navigasi
+    // Perbaikan navigasi (harus dipanggil setelah render)
     initNavigationFix();
     initMobileMenuFixed();
+    
+    initNavbarScroll();
+    initScrollReveal();
+    
+    // Mulai carousel
+    goToSlide(0);
+    startAutoplay();
 });
 
-
-console.log('🚀 TravelExplore dengan slider hero siap!');
+console.log('🚀 RanauRoadTrip siap! Navigasi sudah diperbaiki.');
