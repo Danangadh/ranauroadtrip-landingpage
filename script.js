@@ -79,6 +79,9 @@ const exploreData = [
 // ============================================================
 // DATA TESTIMONI
 // ============================================================
+// ============================================================
+// DATA TESTIMONI
+// ============================================================
 const testimonials = [
     {
         id: 1,
@@ -122,8 +125,24 @@ const testimonials = [
         rating: 4.6,
         comment: 'Paket wisata lengkap dan harga terjangkau. Puas banget!',
     },
+     {
+        id: 5,
+        name: 'Rizky Fadillah',
+        photo: 'https://randomuser.me/api/portraits/men/5.jpg',
+        rating: 4.7,
+        comment: 'Paddleboard sambil menikmati sunset, pengalaman tak terlupakan.',
+    },
+    {
+        id: 6,
+        name: 'Maya Sari',
+        photo: 'https://randomuser.me/api/portraits/women/6.jpg',
+        rating: 4.6,
+        comment: 'Paket wisata lengkap dan harga terjangkau. Puas banget!',
+    },
 ];
 
+// ============================================================
+// ============================================================
 // ============================================================
 // RENDER TESTIMONI (Slider)
 // ============================================================
@@ -249,22 +268,43 @@ function renderExplore() {
 // RENDER DEALS (sementara sebagai contoh)
 // ============================================================
 const dealsData = [
-    { emoji: '🌴', destination: 'Bali', country: 'Indonesia', price: 799, badge: '🔥 Populer' },
-    { emoji: '🌅', destination: 'Santorini', country: 'Yunani', price: 999, badge: '⭐ Favorit' },
-    { emoji: '🏙️', destination: 'Dubai', country: 'UAE', price: 849, badge: '✨ Mewah' },
-    { emoji: '🗼', destination: 'Paris', country: 'Prancis', price: 699, badge: '❤️ Romantis' },
+    {
+        destination: 'Yoga Trip',
+        country: 'Danau Ranau, Sumatera Selatan',
+        price: 565000,
+        badge: ' Populer',
+        image: 'image/yoga-poster.webp'
+    },
+    {
+        emoji: '🌅',
+        destination: 'Private Trip',
+        country: 'Danau Ranau, Sumatera Selatan',
+        price: 1000000,
+        badge: ' Favorit',
+        image: 'image/private-trip.webp'
+    },
+    {
+        emoji: '🏙️',
+        destination: 'Family Adventure Trip',
+        country: 'Danau Ranau, Sumatera Selatan',
+        price: 729000,
+        badge: ' Keluarga',
+        image: 'image/family-trip.webp'
+    },
 ];
 
 function renderDeals() {
     const grid = document.getElementById('dealsGrid');
     if (!grid) return;
+
     grid.innerHTML = dealsData.map(item => `
-        <div class="deal-card">
+        <div class="deal-card" style="background-image: url('${item.image}');">
             <span class="badge-deal">${item.badge}</span>
-            <span class="emoji">${item.emoji}</span>
-            <div class="destination">${item.destination}</div>
-            <div class="country">${item.country}</div>
-            <div class="price">$${item.price} <small>/ orang</small></div>
+            <div class="deal-overlay">
+                <div class="destination">${item.destination}</div>
+                <div class="country">${item.country}</div>
+                <div class="price">Rp${item.price.toLocaleString()} <small>/ orang</small></div>
+            </div>
         </div>
     `).join('');
 }
@@ -459,6 +499,43 @@ function initScrollReveal() {
 }
 
 // ============================================================
+// ANIMASI COUNTER STATISTIK (About Us)
+// ============================================================
+function initCounterAnimation() {
+    const statNumbers = document.querySelectorAll('.stat-number');
+    let hasAnimated = false;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !hasAnimated) {
+                hasAnimated = true;
+                statNumbers.forEach(stat => {
+                    const target = parseInt(stat.dataset.target);
+                    let current = 0;
+                    const increment = Math.ceil(target / 60); // 60 step
+                    const duration = 2000; // 2 detik
+                    const stepTime = Math.floor(duration / 60);
+
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        stat.textContent = current;
+                    }, stepTime);
+                });
+            }
+        });
+    }, { threshold: 0.3 });
+
+    const aboutSection = document.querySelector('.about');
+    if (aboutSection) {
+        observer.observe(aboutSection);
+    }
+}
+
+// ============================================================
 // INIT
 // ============================================================
 document.addEventListener('DOMContentLoaded', () => {
@@ -472,6 +549,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     initNavbarScroll();
     initScrollReveal();
+    initCounterAnimation();
     
     // Mulai carousel
     goToSlide(0);
