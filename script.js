@@ -6,7 +6,7 @@ const exploreData = [
         id: 1,
         name: 'Air Terjun Niagara',
         location: 'Ranau',
-        image: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&h=400&fit=crop',
+        image: 'image/niagara.jpg',
         rating: 4.9,
         tag: '⭐ Terpopuler',
         desc: 'Air Terjun indah dengan pemandangan hijau.',
@@ -22,21 +22,21 @@ const exploreData = [
     },
     {
         id: 3,
-        name: 'Alun-Alun Danau Ranau',
+        name: 'Candle Light',
         location: 'Ranau',
-        image: 'https://images.unsplash.com/photo-1547844149-7c2c5c0f3b6d?w=600&h=400&fit=crop',
+        image: 'image/candlelight.jpg',
         rating: 4.7,
         tag: '🏛️ Heritage',
         desc: 'Pusat keramaian dan kuliner khas.',
     },
     {
         id: 4,
-        name: 'Pantai Pati Marga',
+        name: 'Banana Boat',
         location: 'Ranau',
-        image: 'https://images.unsplash.com/photo-1506765515384-028b60b970df?w=600&h=400&fit=crop',
+        image: 'image/bananaboat.jpg',
         rating: 4.9,
-        tag: '🏖️ Pantai',
-        desc: 'Pantai eksklusif dengan sunset memukau.',
+        tag: 'Sport',
+        desc: 'Watersport, adrenalin, keseruan.',
     },
     {
         id: 5,
@@ -49,9 +49,9 @@ const exploreData = [
     },
     {
         id: 6,
-        name: 'Air Terjun Subik Tuha',
+        name: 'Beach Yoga ',
         location: 'Ranau',
-        image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop',
+        image: 'image/yoga.jpg',
         rating: 4.5,
         tag: '💦 Waterfall',
         desc: 'Air terjun alami di tengah hutan.',
@@ -69,12 +69,154 @@ const exploreData = [
         id: 8,
         name: 'Jetski',
         location: 'Ranau',
-        image: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=600&h=400&fit=crop',
+        image: 'image/jetski.jpg',
         rating: 4.5,
         tag: '🛥️ Jetski',
         desc: 'Sensasi kecepatan di atas air.',
     },
 ];
+
+// ============================================================
+// DATA TESTIMONI
+// ============================================================
+const testimonials = [
+    {
+        id: 1,
+        name: 'Andi Pratama',
+        photo: 'https://randomuser.me/api/portraits/men/1.jpg',
+        rating: 5,
+        comment: 'Pengalaman luar biasa! Pelayanan ramah dan pemandangan memukau.',
+    },
+    {
+        id: 2,
+        name: 'Siti Rahayu',
+        photo: 'https://randomuser.me/api/portraits/women/2.jpg',
+        rating: 4.8,
+        comment: 'Pantai Bidadari sungguh indah, cocok untuk liburan keluarga.',
+    },
+    {
+        id: 3,
+        name: 'Budi Santoso',
+        photo: 'https://randomuser.me/api/portraits/men/3.jpg',
+        rating: 4.9,
+        comment: 'Rafting di Ranau sangat seru! Guide profesional dan aman.',
+    },
+    {
+        id: 4,
+        name: 'Dewi Lestari',
+        photo: 'https://randomuser.me/api/portraits/women/4.jpg',
+        rating: 5,
+        comment: 'Air Terjun Subik Tuha keren abis! Alam masih asri.',
+    },
+    {
+        id: 5,
+        name: 'Rizky Fadillah',
+        photo: 'https://randomuser.me/api/portraits/men/5.jpg',
+        rating: 4.7,
+        comment: 'Paddleboard sambil menikmati sunset, pengalaman tak terlupakan.',
+    },
+    {
+        id: 6,
+        name: 'Maya Sari',
+        photo: 'https://randomuser.me/api/portraits/women/6.jpg',
+        rating: 4.6,
+        comment: 'Paket wisata lengkap dan harga terjangkau. Puas banget!',
+    },
+];
+
+// ============================================================
+// RENDER TESTIMONI (Slider)
+// ============================================================
+let testimonialIndex = 0;
+let testimonialInterval = null;
+
+function renderTestimonials() {
+    const container = document.getElementById('testimonialSlider');
+    if (!container) return;
+
+    // Buat wrapper untuk slide
+    let slidesHtml = '';
+    const cardsPerSlide = window.innerWidth >= 1024 ? 3 : (window.innerWidth >= 768 ? 2 : 1);
+
+    for (let i = 0; i < testimonials.length; i += cardsPerSlide) {
+        const chunk = testimonials.slice(i, i + cardsPerSlide);
+        slidesHtml += `<div class="testimonial-slide">`;
+        chunk.forEach(item => {
+            const stars = '★'.repeat(Math.floor(item.rating)) + '☆'.repeat(5 - Math.floor(item.rating));
+            slidesHtml += `
+                <div class="testimonial-card">
+                    <img src="${item.photo}" alt="${item.name}" class="testimonial-photo" />
+                    <div class="testimonial-info">
+                        <h4>${item.name}</h4>
+                        <div class="testimonial-rating">${stars}</div>
+                        <p>${item.comment}</p>
+                    </div>
+                </div>
+            `;
+        });
+        slidesHtml += `</div>`;
+    }
+
+    container.innerHTML = slidesHtml;
+
+    // Tambahkan dot indikator
+    const dotsContainer = document.getElementById('testimonialDots');
+    if (dotsContainer) {
+        const totalSlides = Math.ceil(testimonials.length / cardsPerSlide);
+        dotsContainer.innerHTML = '';
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('span');
+            dot.className = 'dot' + (i === 0 ? ' active' : '');
+            dot.dataset.index = i;
+            dot.addEventListener('click', () => goToTestimonialSlide(i));
+            dotsContainer.appendChild(dot);
+        }
+    }
+
+    goToTestimonialSlide(0);
+    startTestimonialAutoplay();
+}
+
+function goToTestimonialSlide(index) {
+    const container = document.getElementById('testimonialSlider');
+    if (!container) return;
+    const slides = container.querySelectorAll('.testimonial-slide');
+    if (!slides.length) return;
+
+    if (index < 0) index = slides.length - 1;
+    if (index >= slides.length) index = 0;
+    testimonialIndex = index;
+
+    container.style.transform = `translateX(-${testimonialIndex * 100}%)`;
+
+    // Update dots
+    const dots = document.querySelectorAll('#testimonialDots .dot');
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === testimonialIndex);
+    });
+}
+
+function nextTestimonial() {
+    const slides = document.querySelectorAll('#testimonialSlider .testimonial-slide');
+    if (slides.length) goToTestimonialSlide(testimonialIndex + 1);
+}
+
+function prevTestimonial() {
+    const slides = document.querySelectorAll('#testimonialSlider .testimonial-slide');
+    if (slides.length) goToTestimonialSlide(testimonialIndex - 1);
+}
+
+function startTestimonialAutoplay() {
+    if (testimonialInterval) clearInterval(testimonialInterval);
+    testimonialInterval = setInterval(nextTestimonial, 5000);
+}
+
+function stopTestimonialAutoplay() {
+    if (testimonialInterval) {
+        clearInterval(testimonialInterval);
+        testimonialInterval = null;
+    }
+}
 
 // ============================================================
 // RENDER EXPLORE
@@ -322,6 +464,7 @@ function initScrollReveal() {
 document.addEventListener('DOMContentLoaded', () => {
     renderExplore();
     renderDeals();
+    renderTestimonials(); 
     
     // Perbaikan navigasi (harus dipanggil setelah render)
     initNavigationFix();
@@ -333,6 +476,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mulai carousel
     goToSlide(0);
     startAutoplay();
+    
+    // Event listener untuk tombol testimoni
+    const prevTesti = document.getElementById('testiPrev');
+    const nextTesti = document.getElementById('testiNext');
+    if (prevTesti) {
+        prevTesti.addEventListener('click', () => {
+            stopTestimonialAutoplay();
+            prevTestimonial();
+            startTestimonialAutoplay();
+        });
+    }
+    if (nextTesti) {
+        nextTesti.addEventListener('click', () => {
+            stopTestimonialAutoplay();
+            nextTestimonial();
+            startTestimonialAutoplay();
+        });
+    }
+
+    // Hentikan autoplay saat hover
+    const sliderContainer = document.querySelector('.testimonial-slider-container');
+    if (sliderContainer) {
+        sliderContainer.addEventListener('mouseenter', stopTestimonialAutoplay);
+        sliderContainer.addEventListener('mouseleave', startTestimonialAutoplay);
+    }
 });
+
 
 console.log('🚀 RanauRoadTrip siap! Navigasi sudah diperbaiki.');
